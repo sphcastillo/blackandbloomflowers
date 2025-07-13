@@ -10,15 +10,6 @@ import {
   pd_medium,
   pd_regular,
 } from "@/utils/fonts";
-import bouquet1 from "@/images/flowers/bouquet1.jpg";
-import bouquet2 from "@/images/flowers/bouquet2.jpg";
-import bouquet3 from "@/images/flowers/bouquet3.jpg";
-import bouquet4 from "@/images/flowers/bouquet4.jpg";
-import bouquet5 from "@/images/flowers/bouquet5.jpg";
-import bouquet6 from "@/images/flowers/bouquet6.jpg";
-import bouquet7 from "@/images/flowers/bouquet7.jpg";
-import bouquet8 from "@/images/flowers/bouquet8.jpg";
-import bouquet9 from "@/images/flowers/bouquet9.jpg";
 import Image from "next/image";
 import {
   Carousel,
@@ -28,90 +19,9 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { products } from "@/data/HomeBouquetsData";
 
-const products = [
-  {
-    id: 1,
-    title: "The Pasta Night Send",
-    description: "Includes Graza olive oil + more.",
-    price: "$113",
-    image: bouquet1,
-    options: ["Regular", "Full"],
-    bgColor: "bg-amber-50",
-  },
-  {
-    id: 2,
-    title: "The Birthday Send",
-    description: "Includes four fresh-baked cookies.",
-    price: "$107",
-    image: bouquet2,
-    options: ["Regular", "Full"],
-    bgColor: "bg-pink-100",
-  },
-  {
-    id: 3,
-    title: "The Fresh Set",
-    description: "Includes our signature candle & hand cream.",
-    price: "$74.50",
-    image: bouquet3,
-    options: ["Mini", "Regular", "Full"],
-    bgColor: "bg-orange-50",
-  },
-  {
-    id: 4,
-    title: "Tulips Collection",
-    description: "FS Favorite spring blooms.",
-    price: "$89",
-    image: bouquet4,
-    options: ["Mini", "Regular", "Full"],
-    bgColor: "bg-green-50",
-  },
-  {
-    id: 5,
-    title: "The Wellness Send",
-    description: "Curated self-care essentials.",
-    price: "$95",
-    image: bouquet5,
-    options: ["Mini", "Regular", "Full"],
-    bgColor: "bg-purple-50",
-  },
-  {
-    id: 6,
-    title: "The Pasta Night Send",
-    description: "Includes Graza olive oil + more.",
-    price: "$113",
-    image: bouquet6,
-    options: ["Regular", "Full"],
-    bgColor: "bg-amber-50",
-  },
-  {
-    id: 7,
-    title: "The Birthday Send",
-    description: "Includes four fresh-baked cookies.",
-    price: "$107",
-    image: bouquet7,
-    options: ["Mini", "Regular", "Full"],
-    bgColor: "bg-pink-100",
-  },
-  {
-    id: 8,
-    title: "The Fresh Set",
-    description: "Includes our signature perfume, & hand cream.",
-    price: "$74.50",
-    image: bouquet8,
-    options: ["Regular", "Full"],
-    bgColor: "bg-orange-50",
-  },
-  {
-    id: 9,
-    title: "Tulips Collection",
-    description: "FS Favorite spring blooms.",
-    price: "$89",
-    image: bouquet9,
-    options: ["Mini", "Regular", "Full"],
-    bgColor: "bg-green-50",
-  },
-];
+
 
 function ShoppingCarousel() {
   const [api, setApi] = useState<CarouselApi>();

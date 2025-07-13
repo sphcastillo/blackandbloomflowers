@@ -1,20 +1,15 @@
 import Image from "next/image";
 import { pd_regular_italic } from "@/utils/fonts";
-import image2 from "@/images/2.png";
-import blackAndBlooms1 from "@/images/blackandbloomfloral1.png";
-import purpleheroImage from "@/images/heroImagepurple.png";
-import neonFlower from "@/images/NeonFlower.png";
-import purpleFlower from "@/images/purple-flower.png";
-import heromobile from "@/images/bbf-mobile.png";
+// import bouquet from "@/public/images/hero/herolittlejoys.jpg";
 
 function Hero() {
   return (
     <div className="relative bg-[#faf7f0]">
       {/* Mobile Layout - Single Image */}
       <div className="block md:hidden relative">
-        <div className="hidden relative xxs:block xxs:h-[510px] xs:h-[600px] overflow-hidden -mt-[60px]">
+        <div className="relative xxs:block xxs:h-[510px] xs:h-[600px] overflow-hidden -mt-[60px]">
           <Image
-            src={purpleheroImage}
+            src='/images/hero/herolittlejoys.jpg'
             alt="Person holding beautiful flower bouquet"
             fill
             className="object-cover"
@@ -24,7 +19,7 @@ function Hero() {
         </div>
         <div className="relative h-[540px] xxs:hidden overflow-hidden -mt-[60px]">
           <Image
-            src={heromobile}
+            src='/images/hero/herolittlejoys.jpg'
             alt="Hero Mobile Image"
             fill
             className="object-cover"
@@ -37,7 +32,7 @@ function Hero() {
           <div className="relative">
             <Image 
                 className="w-28 h-28 xs:w-36 xs:h-36 animate-spin-slow"
-                src={neonFlower}
+                src='/images/hero/NeonFlower.png'
                 alt="Neon Flower"
                 width={660}
                 height={660}
@@ -57,7 +52,7 @@ function Hero() {
             <div className="relative">
               <Image 
                   className="w-28 h-28 xs:w-36 xs:h-36 animate-spin-reverse"
-                  src={purpleFlower}
+                  src='/images/hero/purple-flower.png'
                   alt="Purple Flower"
                   width={660}
                   height={660}
@@ -77,7 +72,7 @@ function Hero() {
 
         <div className="hidden relative h-[600px] overflow-hidden">
           <Image
-            src={image2}
+            src='/images/hero/DianaVega.jpg'
             alt="Person holding beautiful flower bouquet"
             fill
             className="object-cover"
@@ -88,7 +83,7 @@ function Hero() {
             <div className="relative">
               <Image 
                   className="w-36 h-36 animate-spin-reverse"
-                  src={purpleFlower}
+                  src='/images/hero/purple-flower.png'
                   alt="Purple Flower"
                   width={660}
                   height={660}
@@ -114,7 +109,7 @@ function Hero() {
           {/* Left Image */}
           <div className="flex-1 relative overflow-visible">
             <Image
-              src={blackAndBlooms1}
+              src='/images/hero/herolittlejoys.jpg'
               alt="Person holding beautiful flower bouquet"
               fill
               className="object-cover"
@@ -125,7 +120,7 @@ function Hero() {
               <div className="relative">
                 <Image 
                     className="w-36 h-36 animate-spin-slow"
-                    src={neonFlower}
+                    src='/images/hero/NeonFlower.png'
                     alt="Neon Flower"
                     width={660}
                     height={660}
@@ -145,7 +140,7 @@ function Hero() {
           {/* Right Image */}
           <div className="flex-1 relative overflow-hidden">
             <Image
-              src={image2}
+              src='/images/hero/DianaVega.jpg'
               alt="Person holding beautiful flower bouquet"
               fill
               id='hero-right-tablet'
@@ -156,7 +151,7 @@ function Hero() {
               <div className="relative">
                 <Image 
                     className="w-36 h-36 animate-spin-reverse"
-                    src={purpleFlower}
+                    src='/images/hero/purple-flower.png'
                     alt="Purple Flower"
                     width={660}
                     height={660}
@@ -183,7 +178,7 @@ function Hero() {
           {/* Left Image */}
           <div className="flex-1 relative overflow-visible">
             <Image
-              src={blackAndBlooms1}
+              src='/images/hero/herolittlejoys.jpg'
               alt="Person holding beautiful flower bouquet"
               fill
               className="object-cover"
@@ -193,7 +188,7 @@ function Hero() {
               <div className="relative">
                 <Image 
                     className="w-36 h-36 animate-spin-slow"
-                    src={neonFlower}
+                    src='/images/hero/NeonFlower.png'
                     alt="Neon Flower"
                     width={660}
                     height={660}
@@ -213,7 +208,7 @@ function Hero() {
           {/* Right Image */}
           <div className="flex-1 relative overflow-visible">
             <Image
-              src={image2}
+              src='/images/hero/DianaVega.jpg'
               alt="Person holding beautiful flower bouquet"
               fill
               className="object-cover"
@@ -223,7 +218,7 @@ function Hero() {
               <div className="relative">
                 <Image 
                     className="w-36 h-36 animate-spin-reverse"
-                    src={purpleFlower}
+                    src='/images/hero/purple-flower.png'
                     alt="Purple Flower"
                     width={660}
                     height={660}
