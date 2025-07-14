@@ -19,14 +19,29 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { products } from "@/data/HomeBouquetsData";
+// import { products } from "@/data/HomeBouquetsData";
 
-
+type Product = {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  category: string;
+  image_url: string;
+}
 
 function ShoppingCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/products/")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error('Failed to fetch products: ',err));
+  }, []);
 
   useEffect(() => {
     if (!api) {
@@ -77,7 +92,7 @@ function ShoppingCarousel() {
                   alt={product.title}
                   width={500}
                   height={500}
-                  src={product.image}
+                  src={product.image_url}
                   className="absolute inset-0 w-full h-full object-cover border-[1px] border-black"
                 />
               </motion.div>
@@ -95,14 +110,14 @@ function ShoppingCarousel() {
 
                 {/* Size Options */}
                 <div className="flex mb-4">
-                  {product.options.map((option, index) => (
+                  {/* {product.options.map((option, index) => (
                     <button
                       key={index}
                       className="px-[15px] border border-gray-300 text-[14px] italic hover:bg-gray-50 transition-colors duration-200"
                     >
                       {option}
                     </button>
-                  ))}
+                  ))} */}
                 </div>
 
                 {/* Add to Cart Button */}

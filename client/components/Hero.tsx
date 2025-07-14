@@ -11,8 +11,9 @@ function Hero() {
           <Image
             src='/images/hero/herolittlejoys.jpg'
             alt="Person holding beautiful flower bouquet"
-            fill
-            className="object-cover"
+            width={2048}
+            height={1152}
+            className="object-cover h-full w-full"
             id='hero-left'
             priority
           />
@@ -20,9 +21,10 @@ function Hero() {
         <div className="relative h-[540px] xxs:hidden overflow-hidden -mt-[60px]">
           <Image
             src='/images/hero/herolittlejoys.jpg'
+            width={2048}
+            height={1152}
             alt="Hero Mobile Image"
-            fill
-            className="object-cover"
+            className="object-cover h-full w-full"
             id='hero-mobile-image'
             priority
           />
@@ -73,8 +75,9 @@ function Hero() {
         <div className="hidden relative h-[600px] overflow-hidden">
           <Image
             src='/images/hero/DianaVega.jpg'
+            width={960}
+            height={958}
             alt="Person holding beautiful flower bouquet"
-            fill
             className="object-cover"
             id="hero-right"
             priority
@@ -111,8 +114,9 @@ function Hero() {
             <Image
               src='/images/hero/herolittlejoys.jpg'
               alt="Person holding beautiful flower bouquet"
-              fill
-              className="object-cover"
+              width={2048}
+              height={1152}
+              className="object-cover h-full w-full"
               id='hero-left-tablet'
               priority
             />
@@ -141,8 +145,9 @@ function Hero() {
           <div className="flex-1 relative overflow-hidden">
             <Image
               src='/images/hero/DianaVega.jpg'
+              width={960}
+              height={958}
               alt="Person holding beautiful flower bouquet"
-              fill
               id='hero-right-tablet'
               className="object-cover"
               priority
@@ -179,9 +184,10 @@ function Hero() {
           <div className="flex-1 relative overflow-visible">
             <Image
               src='/images/hero/herolittlejoys.jpg'
+              width={2048}
+              height={1152}
               alt="Person holding beautiful flower bouquet"
-              fill
-              className="object-cover"
+              className="object-cover h-full w-full"
               priority
             />
             <div className="absolute bottom-[-70px] right-24 z-[100]">
@@ -209,8 +215,9 @@ function Hero() {
           <div className="flex-1 relative overflow-visible">
             <Image
               src='/images/hero/DianaVega.jpg'
+              width={960}
+              height={958}
               alt="Person holding beautiful flower bouquet"
-              fill
               className="object-cover"
               priority
             />
