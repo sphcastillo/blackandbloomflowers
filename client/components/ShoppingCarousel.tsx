@@ -21,6 +21,11 @@ import {
 } from "@/components/ui/carousel";
 // import { products } from "@/data/HomeBouquetsData";
 
+type Variant = {
+  size: "mini" | "regular" | "full";
+  price: string;
+};
+
 type Product = {
   id: number;
   title: string;
@@ -28,6 +33,7 @@ type Product = {
   price: string;
   category: string;
   image_url: string;
+  variants: Variant[];
 }
 
 function ShoppingCarousel() {
@@ -35,13 +41,20 @@ function ShoppingCarousel() {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({});
 
   useEffect(() => {
     fetch("http://localhost:8000/api/products/")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error('Failed to fetch products: ',err));
-  }, []);
+      .then((data) => {
+        setProducts(data);
+        const initialSizes = Object.fromEntries(
+          data.map((product: Product) => [product.id, product.variants[0]?.size ?? 'mini'])
+        );
+        setSelectedSizes(initialSizes);
+      })
+      .catch((err) => console.error('Failed to fetch products: ', err));
+  }, [])
 
   useEffect(() => {
     if (!api) {
@@ -71,6 +84,16 @@ function ShoppingCarousel() {
     if (!api) return;
     api.scrollNext();
   };
+
+  const handleSizeSelect = (productId: number, size: string) => {
+
+    setSelectedSizes((prev) => ({ ...prev, [productId]: size }));
+  }
+
+  const getPriceForSelectedFize = (product: Product) => {
+      const size = selectedSizes[product.id];
+    return product.variants.find((v) => v.size === size)?.price ?? '0.00'
+  }
 
   return (
     <div className="bg-[#faf7f0] w-full max-w-7xl mx-auto py-8 md:py-0 md:pt-[80px] md:pb-[75px] relative z-10">
@@ -108,16 +131,17 @@ function ShoppingCarousel() {
                   {product.description}
                 </p>
 
-                {/* Size Options */}
+                {/* Variant Buttons */}
                 <div className="flex mb-4">
-                  {/* {product.options.map((option, index) => (
+                  {product.variants.map((variant, index) => (
                     <button
                       key={index}
+                      onClick={() => handleSizeSelect(product.id, variant.size)}
                       className="px-[15px] border border-gray-300 text-[14px] italic hover:bg-gray-50 transition-colors duration-200"
                     >
-                      {option}
+                      {variant.size.charAt(0).toUpperCase() + variant.size.slice(1)}
                     </button>
-                  ))} */}
+                  ))}
                 </div>
 
                 {/* Add to Cart Button */}
@@ -133,7 +157,7 @@ function ShoppingCarousel() {
                   <span
                     className={`${pd_medium.className} font-bold pr-[16px]`}
                   >
-                    {product.price}
+                    ${getPriceForSelectedFize(product)}
                   </span>
                 </button>
               </div>
