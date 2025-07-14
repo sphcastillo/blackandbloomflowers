@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { pd_regular_italic } from "@/utils/fonts";
-// import bouquet from "@/public/images/hero/herolittlejoys.jpg";
 
 function Hero() {
   return (
@@ -72,17 +71,17 @@ function Hero() {
             </div>
           </div>
 
-        <div className="hidden relative h-[600px] overflow-hidden">
+        <div className="relative h-[600px] overflow-hidden">
           <Image
             src='/images/hero/DianaVega.jpg'
             width={960}
             height={958}
             alt="Person holding beautiful flower bouquet"
-            className="object-cover"
+            className="object-cover h-full w-full"
             id="hero-right"
             priority
           />
-          <div className="absolute top-6 left-12 z-[100]">
+          {/* <div className="absolute top-6 left-12 z-[100]">
             <div className="relative">
               <Image 
                   className="w-36 h-36 animate-spin-reverse"
@@ -102,7 +101,7 @@ function Hero() {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -149,7 +148,7 @@ function Hero() {
               height={958}
               alt="Person holding beautiful flower bouquet"
               id='hero-right-tablet'
-              className="object-cover"
+              className="object-cover h-full w-full"
               priority
             />
             <div className="absolute top-6 left-12 z-[100]">
@@ -218,7 +217,7 @@ function Hero() {
               width={960}
               height={958}
               alt="Person holding beautiful flower bouquet"
-              className="object-cover"
+              className="object-cover h-full w-full"
               priority
             />
             <div className="absolute top-[-36px] left-12 z-[9999]">
