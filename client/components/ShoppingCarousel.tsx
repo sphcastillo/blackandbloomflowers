@@ -22,6 +22,7 @@ import {
 // import { products } from "@/data/HomeBouquetsData";
 
 type Variant = {
+  id: number;
   size: "mini" | "regular" | "full";
   price: string;
 };
@@ -36,6 +37,14 @@ type Product = {
   variants: Variant[];
 }
 
+const bgGradients = [
+  "bg-gradient-to-r from-purple-700 via-purple-500 to-purple-300",
+  "bg-gradient-to-r from-amber-700 via-amber-500 to-amber-300",
+  "bg-gradient-to-r from-pink-700 via-pink-500 to-pink-300",
+  "bg-gradient-to-r from-orange-700 via-orange-500 to-orange-300",
+  "bg-gradient-to-r from-green-700 via-green-500 to-green-300",
+];
+
 function ShoppingCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -43,8 +52,13 @@ function ShoppingCarousel() {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({});
 
+  const getButtonGradientClass = (index: number) => {
+    return bgGradients[index % bgGradients.length];
+  };
+  
+
   useEffect(() => {
-    fetch("http://localhost:8000/api/products/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -95,15 +109,49 @@ function ShoppingCarousel() {
     return product.variants.find((v) => v.size === size)?.price ?? '0.00'
   }
 
+  const handleAddToCart = async (product: Product) => {
+    const selectedSize = selectedSizes[product.id];
+    const selectedVariant = product.variants.find(v => v.size === selectedSize);
+
+    if(!selectedVariant){
+      alert("Please select a bouquet size");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cart/add/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          variant_id: selectedVariant.id,
+          quantity: 1,
+        })
+      });
+
+      if(!response.ok){
+        throw new Error('Failed to add item to cart');
+      }
+
+      const data = await response.json();
+      console.log('Added to cart: ', data);
+      alert('Item added to cart');
+    } catch(error) {
+      console.error('Error adding item to cart: ', error);
+      alert('Failed to add item to cart');
+    }
+  }
+
   return (
     <div className="bg-[#faf7f0] w-full max-w-7xl mx-auto py-8 md:py-0 md:pt-[80px] md:pb-[75px] relative z-10">
-      <Carousel setApi={setApi} className="max-w-5xl mx-auto">
+      <Carousel setApi={setApi} className="max-w-5xl mx-auto lg:max-w-7xl">
         <CarouselContent className="pl-4">
           {products.map((product, index) => (
             <div
               key={index}
               id="carousel-slide"
-              className="min-w-[70vw] xxs375:min-w-[65vw] md:min-w-[39vw]"
+              className="min-w-[70vw] xxs375:min-w-[65vw] md:min-w-[39vw] lg:min-w-[20vw]"
             >
               <motion.div
                 whileHover={{ scale: 1.02 }}
@@ -147,7 +195,8 @@ function ShoppingCarousel() {
                 {/* Add to Cart Button */}
                 <button
                   id="add-to-cart"
-                  className="w-full bg-gradient-to-r from-purple-700 via-purple-500 to-purple-300 text-white font-semibold py-3 px-1 flex items-center border-[1px] border-black justify-between transition-colors duration-200"
+                  onClick={() => handleAddToCart(product)}
+                  className={`w-full ${getButtonGradientClass(index)} text-white font-semibold py-3 px-1 flex items-center border-[1px] border-black justify-between transition-colors duration-200`}
                 >
                   <span
                     className={`${pd_medium.className}pl-[16px] text-[16px]`}
